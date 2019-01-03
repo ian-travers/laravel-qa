@@ -1,0 +1,9 @@
+version: '3'
+services:
+  # Node
+  node:
+    image: node:8.14-alpine
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    tty: true

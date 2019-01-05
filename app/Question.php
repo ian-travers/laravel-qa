@@ -18,8 +18,8 @@ use Illuminate\Support\Str;
  * @property integer $votes
  * @property null|integer $best_answer_id
  * @property integer $user_id
- * @property integer $created_at
- * @property integer $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  *
  * @property User $user
  */
@@ -40,5 +40,15 @@ class Question extends Model
             . '-'
             . Carbon::now()->format('dmyHi')
         );
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('questions.show', $this->id);
+    }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }

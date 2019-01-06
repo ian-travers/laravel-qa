@@ -26,7 +26,7 @@ use Illuminate\Support\Str;
 class Question extends Model
 {
     protected $fillable = [
-        'title', 'body'
+        'title', 'slug', 'body'
     ];
 
     public function user()

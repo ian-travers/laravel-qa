@@ -16,7 +16,9 @@ class QuestionsController extends Controller
 
     public function create()
     {
-        //
+        $question = New Question();
+
+        return view('questions.create', compact('question'));
     }
 
     public function store(Request $request)

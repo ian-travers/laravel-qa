@@ -29,7 +29,7 @@ class QuestionsController extends Controller
             'body',
         ]));
 
-        return redirect()->route('questions.index')->with('success', 'Your question has been submitted');
+        return redirect()->route('questions.index')->with('success', 'Your question has been submitted.');
     }
 
     public function show(Question $question)
@@ -49,11 +49,13 @@ class QuestionsController extends Controller
             'body',
         ]));
 
-        return redirect()->route('questions.index')->with('success', 'Your question has been updated');
+        return redirect()->route('questions.index')->with('success', 'Your question has been updated.');
     }
 
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+
+        return redirect()->route('questions.index')->with('success', 'Your question has been deleted.');
     }
 }

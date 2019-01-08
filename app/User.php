@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property integer $updated_at
  *
  * @property Question[] $questions
+ * @property Answer[] $answers
  */
 class User extends Authenticatable
 {
@@ -36,9 +37,13 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
     public function getUrlAttribute()
     {
-//        return route('questions.show', $this->id);
         return "#";
     }
 }

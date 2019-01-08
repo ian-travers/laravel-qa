@@ -7,6 +7,12 @@ use App\Question;
 
 class QuestionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' =>['index', 'show']]);
+    }
+
     public function index()
     {
         $questions = Question::with('user')->latest()->paginate(5);

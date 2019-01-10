@@ -5,16 +5,14 @@ use App\Question;
 use App\User;
 use Illuminate\Database\Seeder;
 
-/**
- * Class UsersTableSeeder
- *
- * Create fake user with fake questions & answers
- *
- */
-class UsersTableSeeder extends Seeder
+class UsersQuestionsAnswersTableSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
+        DB::table('answers')->delete();
+        DB::table('questions')->delete();
+        DB::table('users')->delete();
+
         factory(User::class, 3)->create()
             ->each(function (User $user) {
                 $user

@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -22,6 +23,7 @@ use Illuminate\Support\Str;
  * @property Carbon $updated_at
  *
  * @property User $user
+ * @property Collection $favorites
  */
 class Question extends Model
 {
@@ -79,5 +81,25 @@ class Question extends Model
         $this->best_answer_id = $answer->id;
 
         $this->save();
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
+
+    public function getFavoritesCountAttribute()
+    {
+        return $this->favorites->count();
+    }
+
+    private function isFavorited()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->count() > 0;
     }
 }

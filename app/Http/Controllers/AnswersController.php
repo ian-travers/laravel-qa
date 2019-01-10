@@ -39,8 +39,12 @@ class AnswersController extends Controller
         return redirect()->route('questions.show', $question->slug)->with('success', 'Your answer has been updated.');
     }
 
-    public function destroy(Answer $answer)
+    public function destroy(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('delete', $answer);
+
+        $answer->delete();
+
+        return back()->with('success', 'Your answer has been removed.');
     }
 }

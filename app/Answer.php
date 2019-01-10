@@ -47,6 +47,10 @@ class Answer extends Model
         static::created(function (self $answer) {
             $answer->question->increment('answers_count');
         });
+
+        static::deleted(function (self $answer) {
+            $answer->question->decrement('answers_count');
+        });
     }
 
     public function getCreatedDateAttribute()

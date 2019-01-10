@@ -49,14 +49,7 @@ class Answer extends Model
         });
 
         static::deleted(function (self $answer) {
-            /* @var Question $question */
-            $question = $answer->question;
-            $question->decrement('answers_count');
-
-            if ($question->best_answer_id === $answer->id) {
-                $question->best_answer_id =null;
-                $question->save();
-            }
+            $answer->question->decrement('answers_count');
         });
     }
 

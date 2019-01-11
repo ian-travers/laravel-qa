@@ -47,18 +47,14 @@ class QuestionsController extends Controller
 
     public function edit(Question $question)
     {
-        if (\Gate::denies('update-question', $question)) {
-            abort(403, 'Access denied for edit that question.');
-        }
+        $this->authorize('update', $question)->message('Access denied for edit that question.');
 
         return view('questions.edit', compact('question'));
     }
 
     public function update(AskQuestionRequest $request, Question $question)
     {
-        if (\Gate::denies('update-question', $question)) {
-            abort(403, 'Access denied for edit that question.');
-        }
+        $this->authorize('update', $question)->message('Access denied for update that question.');
 
         $question->update($request->only([
             'title',
@@ -70,9 +66,7 @@ class QuestionsController extends Controller
 
     public function destroy(Question $question)
     {
-        if (\Gate::denies('delete-question', $question)) {
-            abort(403, 'Access denied for delete that question.');
-        }
+        $this->authorize('delete', $question)->message('Access denied for delete that question.');
 
         $question->delete();
 

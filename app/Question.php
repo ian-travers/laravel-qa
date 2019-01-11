@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
  * @property string $body
  * @property integer $views
  * @property integer $answers_count
- * @property integer $votes
+ * @property integer $votes_count
  * @property null|integer $best_answer_id
  * @property integer $user_id
  * @property Carbon $created_at
@@ -101,5 +101,20 @@ class Question extends Model
     private function isFavorited()
     {
         return $this->favorites()->where('user_id', auth()->id())->count() > 0;
+    }
+
+    public function votes()
+    {
+        return $this->morphToMany(User::class, 'votable');
+    }
+
+    public function downVotes()
+    {
+        return $this->votes()->wherePivot('vote', -1);
+    }
+
+    public function upVotes()
+    {
+        return $this->votes()->wherePivot('vote', 1);
     }
 }

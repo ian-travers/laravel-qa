@@ -39,7 +39,7 @@ class Answer extends Model
 
     public function getBodyHtmlAttribute()
     {
-        return \Parsedown::instance()->text($this->body);
+        return clean($this->bodyHtml());
     }
 
     public static function boot()
@@ -73,5 +73,10 @@ class Answer extends Model
     private function isBest()
     {
         return $this->id === $this->question->best_answer_id;
+    }
+
+    private function bodyHtml()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 }

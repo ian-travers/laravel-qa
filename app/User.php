@@ -27,6 +27,10 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected $appends = [
+        'url', 'avatar',
+    ];
+
     protected $hidden = [
         'password', 'remember_token',
     ];

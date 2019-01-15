@@ -5,5 +5,7 @@ services:
     image: node:8.14-alpine
     volumes:
       - ./:/var/www
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     working_dir: /var/www
     tty: true

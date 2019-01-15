@@ -18,13 +18,13 @@
 
         computed: {
             postDate() {
-                return this.label + " " + this.model.created_date;
+                return this.label + " " + this.model.created_date
             }
         },
 
         data () {
             return {
-                user: this.model.user;
+                user: this.model.user
             }
         }
     }

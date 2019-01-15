@@ -28,7 +28,7 @@ class Answer extends Model
     ];
 
     protected $appends = [
-        'created_date', 'body_html',
+        'created_date', 'body_html', 'is_best'
     ];
 
     public function question()

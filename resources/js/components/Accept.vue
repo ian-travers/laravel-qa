@@ -33,7 +33,7 @@
                     .then(res => {
                         this.$toast.success(res.data.message, "Success", {
                             timeout: 3000,
-                            positipon: 'bottomLeft'
+                            position: 'bottomLeft'
                         })
                     });
                 this.isBest = true;
@@ -42,7 +42,7 @@
 
         computed: {
             canAccept () {
-                return true;
+                return this.authorize('accept', this.answer);
             },
 
             accepted () {

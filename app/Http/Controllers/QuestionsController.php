@@ -61,6 +61,13 @@ class QuestionsController extends Controller
             'body',
         ]));
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => "Your question has been updated",
+                'body_html' => $question->body_html,
+            ]);
+        }
+
         return redirect()->route('questions.index')->with('success', 'Your question has been updated.');
     }
 
@@ -69,6 +76,12 @@ class QuestionsController extends Controller
         $this->authorize('delete', $question)->message('Access denied for delete that question.');
 
         $question->delete();
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => "Your question has been deleted.",
+            ]);
+        }
 
         return redirect()->route('questions.index')->with('success', 'Your question has been deleted.');
     }

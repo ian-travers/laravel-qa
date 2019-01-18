@@ -34,7 +34,7 @@ class Question extends Model
     ];
 
     protected $appends = [
-        'created_date', 'is_favorited', 'favorites_count'
+        'created_date', 'is_favorited', 'favorites_count', 'body_html'
     ];
 
     public function user()

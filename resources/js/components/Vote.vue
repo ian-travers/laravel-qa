@@ -32,10 +32,7 @@
             }
         },
 
-        components: {
-            Favorite,
-            Accept
-        },
+        components: { Favorite, Accept },
 
         data () {
             return {

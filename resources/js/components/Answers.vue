@@ -31,6 +31,8 @@
     export default {
         props: ['question'],
 
+        components: { Answer, NewAnswer },
+
         data() {
             return {
                 questionId: this.question.id,
@@ -68,10 +70,6 @@
             title() {
                 return this.count + " " + (this.count > 1 ? 'Answers' : 'Answer');
             }
-        },
-
-        components: {
-            Answer, NewAnswer
         }
     }
 </script>
